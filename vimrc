@@ -138,3 +138,4 @@ if filereadable("/proc/sys/vm/laptop_mode")
     endif
 endif
 
+command Ruby19 let testrb="testrb1.9.1"
