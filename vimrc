@@ -120,3 +120,11 @@ nmap <unique> <Leader>cvU <Plug>VCSUnlock
 nmap <unique> <Leader>cvu <Plug>VCSUpdate
 nmap <unique> <Leader>cvv <Plug>VCSVimDiff
 
+if filereadable("/proc/sys/vm/laptop_mode")
+    let lines = readfile("/proc/sys/vm/laptop_mode")
+    if lines[0] != "0"
+        set nofsync
+        set swapsync=""
+    endif
+endif
+
