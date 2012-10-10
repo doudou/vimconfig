@@ -10,7 +10,7 @@ List of useful plugins
    don't forget to add the full path to pyclewn-bin/bin to PATH and to pyclewn-bin/lib/python/ to PYTHONPATH
  * vim-ruby
    git clone git://github.com/vim-ruby/vim-ruby.git ~/.vim/bundle/vim-ruby
- * latex-suite, vcs integration, align
+ * various addons
    apt-get install vim-latexsuite vim-addon-manager vim-scripts
-   vim-addons install align latexsuite vcscommand
+   vim-addons install align latexsuite vcscommand surround
 
