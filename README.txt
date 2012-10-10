@@ -12,5 +12,5 @@ List of useful plugins
    git clone git://github.com/vim-ruby/vim-ruby.git ~/.vim/bundle/vim-ruby
  * various addons
    apt-get install vim-latexsuite vim-addon-manager vim-scripts
-   vim-addons install align latexsuite vcscommand surround
+   vim-addons install align latex-suite vcscommand surround
 

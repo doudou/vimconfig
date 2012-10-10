@@ -3,6 +3,7 @@ call pathogen#infect()
 " Misc
 set hidden		" Make buffer hidden (instead of unloaded) when changing buffers. AT LAST
                         " undo history is not lost on :edit or :bnext
+set modeline
 set showmatch		" Show matching brackets.
 set wrap                " Enable dynamic wrapping
 set linebreak           " Display dynamic wrapping linebreaks 
@@ -31,6 +32,9 @@ function MouseSwitchMode()
 endfunction
 map <F2> :call MouseSwitchMode()<CR>
 call MouseSwitchMode()
+
+" Make backspace delete anything
+set backspace=indent,start,eol
 
 " Search
 set ignorecase		" Do case insensitive matching
@@ -73,6 +77,10 @@ if &term != "linux"
     " use 256 colors
     set t_Co=256
 endif
+
+let xterm16_colormap = "softlight"
+let xterm16_brightness = "default"
+colorscheme xterm16
 
 " Quits diff mode if one of the diffed files is quit
 if v:version >= 700
@@ -120,6 +128,7 @@ nmap <unique> <Leader>cvU <Plug>VCSUnlock
 nmap <unique> <Leader>cvu <Plug>VCSUpdate
 nmap <unique> <Leader>cvv <Plug>VCSVimDiff
 
+" Don't sync in any way when in laptop mode
 if filereadable("/proc/sys/vm/laptop_mode")
     let lines = readfile("/proc/sys/vm/laptop_mode")
     if lines[0] != "0"
