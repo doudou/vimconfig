@@ -1,10 +1,20 @@
 if (exists("b:did_ruby_ftplugin"))
-  finish
+    finish
 endif
 let b:did_ruby_ftplugin = 1
 
-let s:cpo_save = &cpo
-set cpo&vim
+command! -buffer -nargs=* Test :call s:Test(<f-args>)
+command! -buffer -nargs=0 RubyTestCurrentWord :call s:Test(expand('%:p'), expand('<cword>'))
+command! -buffer -nargs=0 RubyTestCurrentFile :call s:Test(expand('%:p'))
+command! -buffer -nargs=0 RubyTestRepeat      :call call("s:Test", g:ruby_last_test)
+map gTw :RubyTestCurrentWord<CR>
+map gTf :RubyTestCurrentFile<CR>
+map gt  :RubyTestRepeat<CR>
+
+if (exists("did_ruby_ftplugin_functions"))
+  finish
+endif
+let did_ruby_ftplugin_functions = 1
 
 function s:FindTestName(dir, base, prefix, ext)
     let test = a:base
@@ -78,10 +88,3 @@ function s:Test(...)
   endtry
 endfunction
 
-command! -buffer -nargs=* Test :call s:Test(<f-args>)
-command! -buffer -nargs=0 RubyTestCurrentWord :call s:Test(expand('%:p'), expand('<cword>'))
-command! -buffer -nargs=0 RubyTestCurrentFile :call s:Test(expand('%:p'))
-command! -buffer -nargs=0 RubyTestRepeat      :call call("s:Test", g:ruby_last_test)
-map gTw :RubyTestCurrentWord<CR>
-map gTf :RubyTestCurrentFile<CR>
-map gt  :RubyTestRepeat<CR>
