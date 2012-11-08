@@ -1,0 +1,32 @@
+" Use KDE viewers, use PDF by default
+let g:Tex_ViewRule_pdf="okular"
+let g:Tex_ViewRule_dvi="okular"
+let g:Tex_DefaultTargetFormat='pdf'
+
+" Fix handling of 'é' and 'â'
+imap <buffer> ,it <Plug>Tex_InsertItemOnThisLine
+imap <buffer> ,bf <Plug>Tex_MathBF
+
+" Define my own leaders
+let g:Tex_Leader = ','
+let g:Tex_Leader2 = '`'
+
+" Do not fold too much
+let g:Tex_FoldedSections = "part,chapter,section,%%fakesection"
+let g:Tex_FoldedMisc = "comments,preamble,<<<"
+
+" Misc
+let g:Tex_SmartKeyBS = 0
+let g:Tex_SmartQuoteOpen = "``"
+let g:Tex_SmartQuoteClose = "''"
+set tw=90
+
+
+" Fix some IMAPs
+augroup MyTexIMAPs
+    au!
+    au VimEnter <buffer> call IMAP('::', '::', 'tex')
+    au VimEnter <buffer> call IMAP('EFR', "\\begin{frame}\<CR>  \\frametitle{<++>}\<CR><++>\<CR>\\end{frame}", 'tex')
+    au VimEnter <buffer> call IMAP('ECO', "\\begin{columns}\<CR> \\column{<++>}\<CR><++>\<CR>\\column{<++>}\<CR><++>\<CR>\\end{columns}<++>", 'tex')
+augroup END
+
