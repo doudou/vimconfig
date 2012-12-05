@@ -4,7 +4,7 @@ endif
 let b:did_ruby_ftplugin = 1
 
 command! -buffer -nargs=* Test :call s:Test(<f-args>)
-command! -buffer -nargs=0 RubyTestCurrentWord :call s:Test(expand('%:p'), expand('<cword>'))
+command! -buffer -nargs=0 RubyTestCurrentWord :call s:Test(expand('%:p'), s:GetTestName())
 command! -buffer -nargs=0 RubyTestCurrentFile :call s:Test(expand('%:p'))
 command! -buffer -nargs=0 RubyTestRepeat      :call call("s:Test", g:ruby_last_test)
 map gTw :RubyTestCurrentWord<CR>
@@ -15,6 +15,24 @@ if (exists("did_ruby_ftplugin_functions"))
   finish
 endif
 let did_ruby_ftplugin_functions = 1
+
+function s:GetTestName()
+    let line = getline(".")
+    let spec_it = match(line, "it \"")
+    let def_test = match(line, "def test_")
+    if spec_it != -1
+        exec "normal yi\""
+        let test_name = getreg()
+        let test_name = substitute(test_name, "[^a-zA-Z_]", "_", "g")
+        let test_name = substitute(test_name, "_\\+", "_", "g")
+        return "/" . test_name . "/"
+    elseif def_test != -1
+        " Assume that we are using test/unit and that the word below the cursor
+        " is the test name
+        return matchstr(line, "test_[a-zA-Z_]\*")
+    endif
+endfunction
+
 
 function s:FindTestName(dir, base, prefix, ext)
     let test = a:base
