@@ -25,7 +25,7 @@ function s:GetTestName()
         let test_name = getreg()
         let test_name = substitute(test_name, "[^a-zA-Z_]", "_", "g")
         let test_name = substitute(test_name, "_\\+", "_", "g")
-        return "/" . test_name . "/"
+        return "/" . tolower(test_name) . "/"
     elseif def_test != -1
         " Assume that we are using test/unit and that the word below the cursor
         " is the test name
