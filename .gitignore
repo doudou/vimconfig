@@ -16,5 +16,10 @@ plugin/imaps.vim
 plugin/libList.vim
 plugin/remoteOpen.vim
 plugin/filebrowser.vim
+plugin/surround.vim
+plugin/matchit.vim
+plugin/NERD_commenter.vim
 indent/tex.vim
+.netrwhist
 *.sw?
+spell/

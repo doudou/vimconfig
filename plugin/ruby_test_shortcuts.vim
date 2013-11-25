@@ -1,20 +1,9 @@
-if (exists("b:did_ruby_ftplugin"))
-    finish
-endif
-let b:did_ruby_ftplugin = 1
-
-command! -buffer -nargs=* Test :call s:Test(<f-args>)
-command! -buffer -nargs=0 RubyTestCurrentWord :call s:Test(expand('%:p'), s:GetTestName())
-command! -buffer -nargs=0 RubyTestCurrentFile :call s:Test(expand('%:p'))
-command! -buffer -nargs=0 RubyTestRepeat      :call call("s:Test", g:ruby_last_test)
-map gTw :RubyTestCurrentWord<CR>
-map gTf :RubyTestCurrentFile<CR>
-map gt  :RubyTestRepeat<CR>
-
-if (exists("did_ruby_ftplugin_functions"))
-  finish
-endif
-let did_ruby_ftplugin_functions = 1
+command! -nargs=0 RubyTestCurrentWord :call s:Test(expand('%:p'), s:GetTestName())
+command! -nargs=0 RubyTestCurrentFile :call s:Test(expand('%:p'))
+command! -nargs=0 RubyTestRepeat      :call call("s:Test", g:ruby_last_test)
+map <leader>Tw :RubyTestCurrentWord<CR>
+map <leader>Tf :RubyTestCurrentFile<CR>
+map <leader>t  :RubyTestRepeat<CR>
 
 function s:GetTestName()
     let line = getline(".")
@@ -25,7 +14,7 @@ function s:GetTestName()
         let test_name = getreg()
         let test_name = substitute(test_name, "[^a-zA-Z_]", "_", "g")
         let test_name = substitute(test_name, "_\\+", "_", "g")
-        return "/" . test_name . "/"
+        return "/" . tolower(test_name) . "/"
     elseif def_test != -1
         " Assume that we are using test/unit and that the word below the cursor
         " is the test name

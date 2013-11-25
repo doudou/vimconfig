@@ -1,4 +1,16 @@
-call pathogen#infect()
+filetype off
+set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/bundle/pyclewn/
+set rtp+=~/.vim/bundle/pyclewn/
+let $PATH .= ":" . $HOME . "/.vim/bundle/pyclewn-bin/bin"
+let $PYTHONPATH .= ":" . $HOME . "/.vim/bundle/pyclewn-bin/lib/python"
+call vundle#rc()
+
+Bundle 'gmarik/vundle'
+Bundle 'doudou/vim-ruby'
+Bundle 'Valloric/YouCompleteMe'
+let g:ycm_confirm_extra_conf = 0
+Bundle 'scrooloose/syntastic'
 
 " Misc
 set hidden		" Make buffer hidden (instead of unloaded) when changing buffers. AT LAST
