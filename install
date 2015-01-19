@@ -1,0 +1,8 @@
+#! /bin/sh
+
+git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+vim +BundleInstall +qall
+sudo apt install vim-addons-manager
+
+vim-addons install align latex-suite matchit surround vcscommand
+
