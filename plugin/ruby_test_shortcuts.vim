@@ -1,6 +1,11 @@
+if exists("ruby_test_shortcuts_loaded")
+    finish
+endif
+let ruby_test_shortcuts_loaded=1
+
 command! -nargs=0 RubyTestCurrentWord :call s:Test(expand('%:p'), s:GetTestName())
 command! -nargs=0 RubyTestCurrentFile :call s:Test(expand('%:p'))
-command! -nargs=0 RubyTestRepeat      :call call("s:Test", g:ruby_last_test)
+command! -nargs=0 RubyTestRepeat      :call s:LastTest()
 map <leader>Tw :RubyTestCurrentWord<CR>
 map <leader>Tf :RubyTestCurrentFile<CR>
 map <leader>t  :RubyTestRepeat<CR>
@@ -67,9 +72,8 @@ function s:FindDir(test_file, test_kind)
 endfunction
 
 function s:Test(...)
-  let g:ruby_last_test = copy(a:000)
+  let g:ruby_last_test = [expand("%")] + copy(a:000)
 
-  compiler! rubyunit
   try
     if a:0 > 0
       if a:1[0] != '/'
@@ -93,5 +97,13 @@ function s:Test(...)
   catch 
     echoerr v:exception
   endtry
+endfunction
+
+function s:LastTest()
+    let testbuffer=g:ruby_last_test[0]
+    let testdef=g:ruby_last_test[1:]
+    " using call() is required to pass arguments using the g:ruby_last_test list
+    exec ":b " . testbuffer
+    call call('s:Test', testdef)
 endfunction
 

@@ -6,7 +6,7 @@ let $PYTHONPATH .= ":" . $HOME . "/.vim/bundle/pyclewn-bin/lib/python"
 call vundle#rc()
 
 Bundle 'gmarik/vundle'
-Bundle 'doudou/vim-ruby'
+Bundle 'vim-ruby/vim-ruby'
 Bundle 'Valloric/YouCompleteMe'
 let g:ycm_confirm_extra_conf = 0
 Bundle 'scrooloose/syntastic'
