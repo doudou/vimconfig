@@ -7,9 +7,9 @@ call vundle#rc()
 
 Bundle 'gmarik/vundle'
 Bundle 'vim-ruby/vim-ruby'
-Bundle 'Valloric/YouCompleteMe'
+"Bundle 'Valloric/YouCompleteMe'
 let g:ycm_confirm_extra_conf = 0
-Bundle 'scrooloose/syntastic'
+"Bundle 'scrooloose/syntastic'
 
 " Misc
 set hidden		" Make buffer hidden (instead of unloaded) when changing buffers. AT LAST
