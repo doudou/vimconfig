@@ -17,16 +17,20 @@ function s:GetTestName()
     if spec_it != -1
         exec "normal yi\""
         let test_name = getreg()
-        let test_name = substitute(test_name, "[^a-zA-Z_]", "_", "g")
-        let test_name = substitute(test_name, "_\\+", "_", "g")
-        return "/" . tolower(test_name) . "/"
+        if test_name == 0
+            exec "normal yi\'"
+            let test_name = getreg()
+        end
+
+        let test_name = substitute(test_name, "[^a-zA-Z_]", ".", "g")
+        let test_name = substitute(test_name, "_\\+", ".", "g")
+        return "/" . test_name . "/"
     elseif def_test != -1
         " Assume that we are using test/unit and that the word below the cursor
         " is the test name
         return matchstr(line, "test_[a-zA-Z_]\*")
     endif
 endfunction
-
 
 function s:FindTestName(dir, base, prefix, ext)
     let test = a:base
