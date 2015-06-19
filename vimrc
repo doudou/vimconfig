@@ -1,8 +1,5 @@
 filetype off
 set rtp+=~/.vim/bundle/vundle/
-set rtp+=~/.vim/bundle/pyclewn/
-let $PATH .= ":" . $HOME . "/.vim/bundle/pyclewn-bin/bin"
-let $PYTHONPATH .= ":" . $HOME . "/.vim/bundle/pyclewn-bin/lib/python"
 call vundle#rc()
 
 Bundle 'gmarik/vundle'
