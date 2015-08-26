@@ -48,8 +48,3 @@ augroup RubySpecificSettings
     au FileType ruby :call RubyAddRootdirToPath()
 augroup END
 
-" Some specific setting related to the darcs plugin
-augroup DarcsSpecificSetting
-    au BufEnter darcsVimTemp* set nofoldenable
-augroup END
-
