@@ -10,6 +10,7 @@ augroup filetypedetect
     au BufNewFile,BufRead .mutt/*.rc setf muttrc
 
     au BufNewFile,BufRead *.orogen setf ruby
+    au BufNewFile,BufRead *.autobuild setf ruby
 
     au BufNewFile,BufRead *.gen     setf c
 
@@ -19,7 +20,6 @@ augroup filetypedetect
     au BufNewFile,BufRead COMMIT_EDITMSG  setf plain
     au BufNewFile,BufRead *.page  setf plain
 
-    au BufNewFile,BufRead *.autobuild setf ruby
 
     au BufNewFile,BufRead SConscript setf python
     au BufNewFile,BufRead SConstruct setf python
