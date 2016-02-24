@@ -46,5 +46,6 @@ augroup RubySpecificSettings
     au BufNewFile,BufRead *.rb    runtime ftplugin/ruby-rcodetools.vim
 
     au FileType ruby :call RubyAddRootdirToPath()
+    au FileType rubyunit :set makeprg=ruby\ -Ilib
 augroup END
 
